@@ -133,11 +133,6 @@ export default {
     },
 
     billableHourlyRate: function() {
-      console.log('----');
-      console.log(parseInt(this.totalAverageRate));
-      console.log(parseInt(this.division.second.labor_target_percent));
-      console.log((parseInt(this.totalAverageRate)/parseInt(this.division.second.labor_target_percent)));
-      console.log('----');
       return (parseInt(this.totalAverageRate) / parseInt(this.division.second.labor_target_percent));
     }
   }
