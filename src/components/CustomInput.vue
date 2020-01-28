@@ -1,14 +1,14 @@
 <template>
     <div>
-        <input type="text" v-model="displayValue" @blur="isInputActive = false" @focus="isInputActive = true"/>
+        <b-form-input type="text" v-model="displayValue" @blur="isInputActive = false" @focus="isInputActive = true" :disabled="disabled" />
     </div>
 </template>
 
 <script>
 export default {
-    name: 'DollarCurrencyInput',
+    name: 'CustomInput',
 
-    props: ["value"],
+    props: ["value", 'disabled'],
 
     data() {
         return {
@@ -24,12 +24,13 @@ export default {
                     return this.value.toString()
                 } else {
                     // User is not modifying now. Format display value for user interface
-                    return "$ " + this.value.toFixed(2).replace(/(\d)(?=(\d{3})+(?:\.\d+)?$)/g, "$1,")
+                    // return "$ " + this.value.toFixed(2).replace(/(\d)(?=(\d{3})+(?:\.\d+)?$)/g, "$1,")
+                    return "$ " + this.value
                 }
             },
             set: function(modifiedValue) {
                 // Recalculate value after ignoring "$" and "," in user input
-                let newValue = parseFloat(modifiedValue.replace(/[^\d\.]/g, ""))
+                let newValue = parseFloat(modifiedValue.replace(/[^\d\.]/g, "")) // eslint-disable-line
                 // Ensure that it is not NaN
                 if (isNaN(newValue)) {
                     newValue = 0

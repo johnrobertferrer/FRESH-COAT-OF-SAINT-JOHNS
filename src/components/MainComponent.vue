@@ -37,7 +37,8 @@
         </label>
       </b-col>
       <b-col> 
-        <b-form-input v-model="division.second.average_hourly_rate" type="text"></b-form-input>
+        <!-- <b-form-input v-model="division.second.average_hourly_rate" type="text"></b-form-input> -->
+        <CustomInput v-model="division.second.average_hourly_rate"></CustomInput>
       </b-col>
     </b-row>
 
@@ -48,7 +49,8 @@
         </label>
       </b-col>
       <b-col> 
-        <b-form-input v-model="division.second.burden_percent" type="text"></b-form-input>
+        <!-- <b-form-input v-model="division.second.burden_percent" type="text"></b-form-input> -->
+        <CustomInput v-model="division.second.burden_percent"></CustomInput>
       </b-col>
     </b-row>
 
@@ -59,7 +61,8 @@
         </label>
       </b-col>
       <b-col> 
-        <b-form-input :value="totalAverageRate" disabled type="text"></b-form-input>
+        <!-- <b-form-input :value="totalAverageRate" disabled type="text"></b-form-input> -->
+        <CustomInput v-model="totalAverageRate" :disabled="true"></CustomInput>
       </b-col>
     </b-row>
 
@@ -70,7 +73,8 @@
         </label>
       </b-col>
       <b-col> 
-        <b-form-input v-model="division.second.labor_target_percent" type="text"></b-form-input>
+        <!-- <b-form-input v-model="division.second.labor_target_percent" type="text"></b-form-input> -->
+        <CustomInput v-model="division.second.labor_target_percent"></CustomInput>
       </b-col>
     </b-row>
 
@@ -81,23 +85,22 @@
         </label>
       </b-col>
       <b-col> 
-        <b-form-input :value="billableHourlyRate" disabled type="text"></b-form-input>
+        <!-- <b-form-input :value="billableHourlyRate" disabled type="text"></b-form-input> -->
+        <CustomInput v-model="billableHourlyRate" :disabled="true"></CustomInput>
       </b-col>
     </b-row>
-
-    <DollarCurrencyInput v-model="division.second.labor_target_percent"></DollarCurrencyInput>
 
   </b-container>
 </template>
 
 <script>
-import DollarCurrencyInput from './DollarCurrencyInput.vue'
+import CustomInput from './CustomInput.vue'
 
 export default {
   name: 'MainComponent',
 
   components: {
-    DollarCurrencyInput
+    CustomInput
   },
 
   props: {
@@ -114,10 +117,10 @@ export default {
         },
 
         second: {
-          average_hourly_rate: 23,
-          burden_percent: 20,
+          average_hourly_rate: 0,
+          burden_percent: 0,
           total_average_rate: 0,
-          labor_target_percent: 0,
+          labor_target_percent: 1,
           billable_hourly_rate: 0
         }
       }
@@ -126,11 +129,16 @@ export default {
 
   computed: {
     totalAverageRate: function() {
-      return this.division.second.average_hourly_rate * (1 + parseInt(this.division.second.burden_percent));
+      return this.division.second.average_hourly_rate * (1 + parseFloat(this.division.second.burden_percent));
     },
 
     billableHourlyRate: function() {
-      return (parseInt(this.totalAverageRate) / parseInt(this.division.second.labor_target_percent)).toFixed(2);
+      console.log('----');
+      console.log(parseInt(this.totalAverageRate));
+      console.log(parseInt(this.division.second.labor_target_percent));
+      console.log((parseInt(this.totalAverageRate)/parseInt(this.division.second.labor_target_percent)));
+      console.log('----');
+      return (parseInt(this.totalAverageRate) / parseInt(this.division.second.labor_target_percent));
     }
   }
 }
