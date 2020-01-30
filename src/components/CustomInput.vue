@@ -54,6 +54,10 @@ export default {
                     // Cursor is inside the input field. unformat display value for user
                     return this.value.toString()
                 } else {
+                    if(!isFinite(this.value)) {
+                        this.value = 0; // eslint-disable-line
+                    } 
+
                     let format = this.value.toFixed(2).replace(/(\d)(?=(\d{3})+(?:\.\d+)?$)/g, "$1,");
 
                     switch(this.type) {
