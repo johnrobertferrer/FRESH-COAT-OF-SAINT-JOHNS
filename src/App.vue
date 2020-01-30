@@ -1,12 +1,11 @@
 <template>
     <div id="app">
-        <div class="d-flex justify-content-center">
+        <div class="center" v-if="loading">
             <b-spinner 
-                style="width: 10vw; height: 10vw; margin-top: 50%" 
+                style="width: 10vw; height: 10vw;" 
                 label="Loading..."
                 type="grow"
                 variant="primary"
-                v-if="loading"
             ></b-spinner>
         </div>
 
@@ -50,5 +49,13 @@
         color: #2c3e50;
         margin: 2.5vh 0;
         font-family: 'Roboto';
+    }
+
+    .center {
+        display: flex;           /* establish flex container */
+        flex-direction: column;  /* make main axis vertical */
+        justify-content: center; /* center items vertically, in this case */
+        align-items: center;     /* center items horizontally, in this case */
+        height: 100vh;
     }
 </style>
