@@ -60,6 +60,6 @@
     }
 
     .margin {
-        margin: 2.5vh 0;
+        margin: 2.5vh auto;
     }
 </style>
