@@ -1,194 +1,358 @@
 <template>
-	<b-container>
-		<b-jumbotron bg-variant="primary" text-variant="white">
-			<b-row>
-				<b-col>
-					<h4>{{ title }}</h4>
-				</b-col>
-				<b-col>
-					<h4>{{ subTitle }}</h4>
-				</b-col>
-			</b-row>
-		</b-jumbotron>
+    <b-container>
+        <b-jumbotron bg-variant="primary" text-variant="white">
+            <b-row>
+                <b-col>
+                    <h5>{{ title }}</h5>
+                </b-col>
+                <b-col>
+                    <h5>{{ subTitle }}</h5>
+                </b-col>
+            </b-row>
+        </b-jumbotron>
 
-		<b-jumbotron bg-variant="dark" text-variant="white">
-			<b-table hover :items="getFirstItem" table-variant="dark" :fields="getFirstField"></b-table>
-		</b-jumbotron>
+        <b-jumbotron bg-variant="dark" text-variant="white">
+            <b-table hover :items="getFirstItem" table-variant="dark" :fields="getFirstField"></b-table>
+        </b-jumbotron>
 
-		<b-card
-			border-variant="primary"
-			header="EPIC eBid Sanity Check"
-			header-bg-variant="primary"
-			header-text-variant="white"
-			align="center"
-		>
+        <b-card border-variant="primary" header="EPIC eBid Sanity Check" header-bg-variant="primary" header-text-variant="white" align="center">
+            <b-row class="item">
+                <b-col>
+                    <label>
+                        Avg Hrly Rate
+                    </label>
+                </b-col>
+                <b-col class="wide">
+                    <CustomInput type="dollar" v-model="division.second.average_hourly_rate" alias="average_hourly_rate"></CustomInput>
+                </b-col>
+            </b-row>
+
+            <b-row class="item">
+                <b-col>
+                    <label>
+                        Burden %
+                    </label>
+                </b-col>
+                <b-col class="wide">
+                    <CustomInput type="percent" v-model="division.second.burden_percent" alias="burden_percent"></CustomInput>
+                </b-col>
+            </b-row>
+
+            <b-row class="item">
+                <b-col>
+                    <label>
+                        Total Avg Rate
+                    </label>
+                </b-col>
+                <b-col class="wide">
+                    <CustomInput type="dollar" v-model="totalAverageRate" :disabled="true"></CustomInput>
+                </b-col>
+            </b-row>
+
+            <b-row class="item">
+                <b-col>
+                    <label>
+                        'Labor Traget %
+                    </label>
+                </b-col>
+                <b-col class="wide">
+                    <CustomInput v-model="division.second.labor_target_percent" alias="labor_target_percent"></CustomInput>
+                </b-col>
+            </b-row>
+
+            <b-row class="item">
+                <b-col>
+                    <label>
+                        Billable Hrly Rate
+                    </label>
+                </b-col>
+                <b-col class="wide">
+                    <CustomInput type="dollar" v-model="billableHourlyRate" :disabled="true"></CustomInput>
+                </b-col>
+            </b-row>
+        </b-card>
+
+		<b-card border-variant="primary" header="Pricing Estimate" header-bg-variant="primary" header-text-variant="white" align="center">
+            <b-row class="item">
+                <b-col>
+                    <label>
+                        EPIC Work Order Hours
+                    </label>
+                </b-col>
+                <b-col class="wide">
+                    <CustomInput v-model="division.third.epic_work_order_hours" alias="epic_work_order_hours"></CustomInput>
+                </b-col>
+            </b-row>
+
+            <b-row class="item">
+                <b-col>
+                    <label>
+                        Divided by 8 hour per day
+                    </label>
+                </b-col>
+                <b-col class="wide">
+                    <CustomInput v-model="division.third.divided_by_eight_hour_per_day" :disabled="true"></CustomInput>
+                </b-col>
+            </b-row>
+
+            <b-row class="item">
+                <b-col>
+                    <label>
+                        Labor in days
+                    </label>
+                </b-col>
+                <b-col class="wide">
+                    <CustomInput v-model="laborInDays" :disabled="true"></CustomInput>
+                </b-col>
+            </b-row>
+        </b-card>
+
+		<b-card border-variant="primary" align="center">
+            <b-row class="item">
+                <b-col>
+                    <label>
+                        Rounded Labor Days
+                    </label>
+                </b-col>
+                <b-col class="wide">
+                    <CustomInput v-model="division.fourth.rounded_labor_days" alias="rounded_labor_days"></CustomInput>
+                </b-col>
+            </b-row>
+
+            <b-row class="item">
+                <b-col>
+                    <label>
+                        Billable Hours/Day
+                    </label>
+                </b-col>
+                <b-col class="wide">
+                    <CustomInput v-model="division.fourth.billable_hours_day" alias="billable_hours_day"></CustomInput>
+                </b-col>
+            </b-row>
+
+            <b-row class="item">
+                <b-col>
+                    <label>
+                        Billable Hours Total
+                    </label>
+                </b-col>
+                <b-col class="wide">
+                    <CustomInput v-model="billableHoursTotal" :disabled="true"></CustomInput>
+                </b-col>
+            </b-row>
+
+            <b-row class="item">
+                <b-col>
+                    <label>
+                        Sanity Check Hrly Rate(from above)
+                    </label>
+                </b-col>
+                <b-col class="wide">
+                    <CustomInput type="dollar" v-model="sanityCheckHourlyRate" :disabled="true"></CustomInput>
+                </b-col>
+            </b-row>
+
 			<b-row class="item">
-				<b-col>
-					<label >
-					Avg Hrly Rate
-					</label>
-				</b-col>
-				<b-col>
-					<CustomInput v-model="division.second.average_hourly_rate"></CustomInput>
-				</b-col>
-			</b-row>
+                <b-col>
+                    <label>
+                        Total Cost
+                    </label>
+                </b-col>
+                <b-col class="wide">
+                    <CustomInput type="dollar" v-model="totalCost" :disabled="true"></CustomInput>
+                </b-col>
+            </b-row>
 
-			<b-row class="item">
-				<b-col>
-					<label >
-					Burden %
-					</label>
-				</b-col>
-				<b-col>
-					<CustomInput v-model="division.second.burden_percent"></CustomInput>
-				</b-col>
-			</b-row>
+            <b-row class="item">
+                <b-col>
+                    <label>
+                        Rounded not to end in zero
+                    </label>
+                </b-col>
+                <b-col class="wide">
+                    <CustomInput type="dollar" v-model="division.fourth.rounded_not_end_zero" alias="rounded_not_end_zero"></CustomInput>
+                </b-col>
+            </b-row>
+        </b-card>
 
-			<b-row class="item">
-				<b-col>
-					<label >
-					Total Avg Rate
-					</label>
-				</b-col>
-				<b-col>
-					<CustomInput v-model="totalAverageRate" :disabled="true"></CustomInput>
-				</b-col>
-			</b-row>
-
-			<b-row class="item">
-				<b-col>
-					<label >
-					'Labor Traget %
-					</label>
-				</b-col>
-				<b-col>
-					<CustomInput v-model="division.second.labor_target_percent"></CustomInput>
-				</b-col>
-			</b-row>
-
-			<b-row class="item">
-				<b-col>
-					<label >
-					Billable Hrly Rate
-					</label>
-				</b-col>
-				<b-col> 
-					<!-- <b-form-input :value="billableHourlyRate" disabled type="text"></b-form-input> -->
-					<CustomInput v-model="billableHourlyRate" :disabled="true"></CustomInput>
-				</b-col>
-			</b-row>
-		</b-card>
-
-	</b-container>
+		<b-button block variant="danger" @click="reset()">
+			Clear
+			<b-icon-backspace></b-icon-backspace>
+		</b-button>
+    </b-container>
 </template>
 
 <script>
-import CustomInput from './CustomInput.vue'
+    import CustomInput from './CustomInput.vue'
 
-export default {
-	name: 'MainComponent',
+    export default {
+        name: 'MainComponent',
 
-	components: {
-		CustomInput
-	},
+        components: {
+            CustomInput
+        },
 
-	props: {
-		title: String,
-		subTitle: String
-	},
+        props: {
+            title: String,
+            subTitle: String
+        },
 
-	data() {
-		return {
-		division: {
-			first: {
-			estimated_date: '07/02/2019',
-			project_completion_date: '07/02/2019'
+        data() {
+            return {
+                division: {}
+            }
+        },
+
+		created() {
+			this.division = this.getInitialData();
+		},
+
+        methods: {
+			reset() {
+				this.division = this.getInitialData();
 			},
 
-			second: {
-			average_hourly_rate: 0,
-			burden_percent: 0,
-			total_average_rate: 0,
-			labor_target_percent: 1,
-			billable_hourly_rate: 0
+			getInitialData() {
+				let division = {
+					first: {
+                        estimated_date: '07/02/2019',
+                        project_completion_date: '07/02/2019'
+                    },
+
+                    second: {
+                        average_hourly_rate: 0,
+                        burden_percent: 0,
+                        total_average_rate: 0,
+                        labor_target_percent: 0,
+                        billable_hourly_rate: 0
+					},
+
+					third: {
+						epic_work_order_hours: 0,
+						divided_by_eight_hour_per_day: 8,
+						labor_in_days: 0
+					},
+
+                    fourth: {
+                        rounded_labor_days: 0,
+                        billable_hours_day: 0,
+                        sanity_check_hourly_rate: 0,
+                        total_cost: 0,
+                        rounded_not_end_zero: 0,
+                        billable_hours_total: 0
+                    }
+				}
+
+				return division;
 			}
-		}
-		}
-	},
+        },
 
-	method: {
-		
-	},
+        computed: {
+            totalAverageRate: function() {
+                return this.division.second.average_hourly_rate * (1 + parseFloat(this.division.second.burden_percent));
+            },
 
-	computed: {
-		totalAverageRate: function() {
-		return this.division.second.average_hourly_rate * (1 + parseFloat(this.division.second.burden_percent));
-		},
+            billableHourlyRate: function() {
+                return (parseFloat(this.totalAverageRate) / parseFloat(this.division.second.labor_target_percent));
+			},
 
-		billableHourlyRate: function() {
-		return (parseInt(this.totalAverageRate) / parseInt(this.division.second.labor_target_percent));
-		},
+			laborInDays: function() {
+				return (parseFloat(this.division.third.epic_work_order_hours) / parseFloat(this.division.third.divided_by_eight_hour_per_day));
+            },
+            
+            billableHoursTotal: function() {
+                return (parseFloat(this.division.fourth.rounded_labor_days) * parseFloat(this.division.fourth.billable_hours_day));
+            },
 
-		getFirstItem() {
-			let items = [
-				{ jobName: 'Estimate Date', mobleyTraining: '07/02/2019' },
-				{ jobName: 'Project Completion Date', mobleyTraining: '07/02/2019' }
-			];
+            sanityCheckHourlyRate: function() {
+                return this.billableHourlyRate;
+            },
 
-			return items;
-		},
+            totalCost: function() {
+                return parseFloat(this.sanityCheckHourlyRate * this.billableHoursTotal);
+            },
 
-		getFirstField() {
-			let fields = [
-				{ key: 'jobName', label: 'Job Name'},
-				{ key: 'mobleyTraining', label: 'Mobley #2/Training'}
-			];
+            getFirstItem() {
+                let items = [{
+                    jobName: 'Estimate Date',
+                    mobleyTraining: '07/02/2019'
+                }, {
+                    jobName: 'Project Completion Date',
+                    mobleyTraining: '07/02/2019'
+                }];
 
-			return fields
-		}
-	}
-}
+                return items;
+            },
+
+            getFirstField() {
+                let fields = [{
+                    key: 'jobName',
+                    label: 'Job Name'
+                }, {
+                    key: 'mobleyTraining',
+                    label: 'Mobley #2/Training'
+                }];
+
+                return fields
+            }
+        }
+    }
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-	ul {
-	list-style-type: none;
-	padding: 0;
-	}
-	li {
-	display: inline-block;
-	margin: 0 10px;
-	}
-	a {
-	color: #42b983;
-	}
-	label {
-		margin-top: 8px;
-	}
-	.item, .col {
-		/* Internet Explorer 10 */
-		display:-ms-flexbox;
-		-ms-flex-pack:center;
-		-ms-flex-align:center;
+    ul {
+        list-style-type: none;
+        padding: 0;
+    }
+    
+    li {
+        display: inline-block;
+        margin: 0 10px;
+    }
+    
+    a {
+        color: #42b983;
+    }
+    
+    label {
+        margin-top: 8px;
+    }
 
-		/* Firefox */
-		display:-moz-box;
-		-moz-box-pack:center;
-		-moz-box-align:center;
-
-		/* Safari, Opera, and Chrome */
-		display:-webkit-box;
-		-webkit-box-pack:center;
-		-webkit-box-align:center;
-
-		/* W3C */
-		display:box;
-		box-pack:center;
-		box-align:center;
+	table {
+		margin-bottom: 0;
 	}
-	.jumbotron {
+    
+    .item,
+    .col {
+        /* Internet Explorer 10 */
+        display: -ms-flexbox;
+        -ms-flex-pack: center;
+        -ms-flex-align: center;
+        /* Firefox */
+        display: -moz-box;
+        -moz-box-pack: center;
+        -moz-box-align: center;
+        /* Safari, Opera, and Chrome */
+        display: -webkit-box;
+        -webkit-box-pack: center;
+        -webkit-box-align: center;
+        /* W3C */
+        display: box;
+        box-pack: center;
+        box-align: center;
+    }
+
+    .jumbotron {
+        margin-bottom: 1rem;
+        padding: 2rem;
+    }
+
+	.wide div {
+		width: 100%;
+	}
+
+	.card {
 		margin-bottom: 1rem;
-		padding: 2rem;
 	}
 </style>
