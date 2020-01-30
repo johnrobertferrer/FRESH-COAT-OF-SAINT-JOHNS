@@ -2,7 +2,7 @@
     <div id="app">
         <div class="center" v-if="loading">
             <b-spinner 
-                style="width: 10vw; height: 10vw;" 
+                style="width: 15vw; height: 15vw;" 
                 label="Loading..."
                 type="grow"
                 variant="primary"
@@ -13,6 +13,7 @@
             title="Fresh Coat of NW San Antonio" 
             sub-title="Project Budget Versus Actual Expense" 
             v-if="!loading"
+            class="margin"
         />
     </div>
 </template>
@@ -47,7 +48,6 @@
         -moz-osx-font-smoothing: grayscale;
         text-align: center;
         color: #2c3e50;
-        margin: 2.5vh 0;
         font-family: 'Roboto';
     }
 
@@ -57,5 +57,9 @@
         justify-content: center; /* center items vertically, in this case */
         align-items: center;     /* center items horizontally, in this case */
         height: 100vh;
+    }
+
+    .margin {
+        margin: 2.5vh 0;
     }
 </style>
