@@ -1,6 +1,6 @@
 <template>
     <div>
-        <b-form-input type="text" v-model="displayValue" @blur="isInputActive = false" @focus="isInputActive = true" :disabled="disabled" v-on:keyup.enter="focus($event)"/>
+        <b-form-input type="text" v-model="displayValue" @blur="isInputActive = false" @focus="isInputActive = true" :disabled="disabled" :class="customClass" v-on:keyup.enter="focus($event)"/>
     </div>
 </template>
 
@@ -8,7 +8,7 @@
 export default {
     name: 'CustomInput',
 
-    props: ["value", "disabled", "alias", "type"],
+    props: ["value", "disabled", "alias", "type", "classes"],
 
     data() {
         return {
@@ -50,22 +50,31 @@ export default {
     computed: {
         displayValue: {
             get: function() {
+                // Note: we cannot set this.value as it is a "prop". It needs to be passed to parent component
+                let value = this.value;
+
                 if (this.isInputActive) {
                     // Cursor is inside the input field. unformat display value for user
-                    return this.value.toString()
+                    return value.toString();
                 } else {
-                    if(!isFinite(this.value)) {
-                        this.value = 0; // eslint-disable-line
+                    if(!isFinite(value)) {
+                        value = 0; // eslint-disable-line
                     } 
 
-                    let format = this.value.toFixed(2).replace(/(\d)(?=(\d{3})+(?:\.\d+)?$)/g, "$1,");
+                    let format = value.toFixed(2).replace(/(\d)(?=(\d{3})+(?:\.\d+)?$)/g, "$1,");
 
                     switch(this.type) {
                         case 'dollar':
-                            format = "$ " + this.value.toFixed(2).replace(/(\d)(?=(\d{3})+(?:\.\d+)?$)/g, "$1,");
+                            format = "$ " + value.toFixed(2).replace(/(\d)(?=(\d{3})+(?:\.\d+)?$)/g, "$1,");
                             break;
                         case 'percent': 
-                            format = this.value.toFixed(2) + '%';
+                            format = value.toFixed(2) + '%';
+                            break;
+                        case 'dollar_parenthesis':
+                            // format = value < 0
+                            //             ? "- $ (" + (value*-1).toFixed(2).replace(/(\d)(?=(\d{3})+(?:\.\d+)?$)/g, "$1,") + ')'
+                            //             : "$ (" + value.toFixed(2).replace(/(\d)(?=(\d{3})+(?:\.\d+)?$)/g, "$1,") + ')';
+                            format = "$ (" + value.toFixed(2).replace(/(\d)(?=(\d{3})+(?:\.\d+)?$)/g, "$1,") + ')';
                             break;
                     }
                     // User is not modifying now. Format display value for user interface
@@ -81,8 +90,14 @@ export default {
                 }
                 // Note: we cannot set this.value as it is a "prop". It needs to be passed to parent component
                 // $emit the event so that parent component gets it
-                this.$emit('input', newValue)
+                this.$emit('input', newValue);
             }
+        },
+
+        customClass: function() {
+            let custom = this.classes === undefined ? '' : this.classes;
+
+            return custom;
         }
     }
 }
@@ -90,5 +105,13 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+    .noBoxShadow {
+        border-color: inherit !important;
+        -webkit-box-shadow: none !important;
+        box-shadow: none !important;
+    }
 
+    .bg-gray-300 {
+        background: ##e9ecef !important;
+    }
 </style>

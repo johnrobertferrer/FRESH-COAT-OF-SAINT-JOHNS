@@ -11,6 +11,7 @@
             </b-row>
         </b-jumbotron>
 
+        <!-- FIRST -->
         <b-jumbotron bg-variant="dark" text-variant="white">
             <b-table hover :items="getFirstItem" table-variant="dark" :fields="getFirstField"></b-table>
         </b-jumbotron>
@@ -22,7 +23,7 @@
                         Avg Hrly Rate
                     </label>
                 </b-col>
-                <b-col class="wide">
+                <b-col class="full">
                     <CustomInput type="dollar" v-model="division.second.average_hourly_rate" alias="average_hourly_rate"></CustomInput>
                 </b-col>
             </b-row>
@@ -33,7 +34,7 @@
                         Burden %
                     </label>
                 </b-col>
-                <b-col class="wide">
+                <b-col class="full">
                     <CustomInput type="percent" v-model="division.second.burden_percent" alias="burden_percent"></CustomInput>
                 </b-col>
             </b-row>
@@ -44,7 +45,7 @@
                         Total Avg Rate
                     </label>
                 </b-col>
-                <b-col class="wide">
+                <b-col class="full">
                     <CustomInput type="dollar" v-model="totalAverageRate" :disabled="true"></CustomInput>
                 </b-col>
             </b-row>
@@ -55,7 +56,7 @@
                         'Labor Traget %
                     </label>
                 </b-col>
-                <b-col class="wide">
+                <b-col class="full">
                     <CustomInput v-model="division.second.labor_target_percent" alias="labor_target_percent"></CustomInput>
                 </b-col>
             </b-row>
@@ -66,12 +67,13 @@
                         Billable Hrly Rate
                     </label>
                 </b-col>
-                <b-col class="wide">
+                <b-col class="full">
                     <CustomInput type="dollar" v-model="billableHourlyRate" :disabled="true"></CustomInput>
                 </b-col>
             </b-row>
         </b-card>
 
+        <!-- SECOND -->
 		<b-card border-variant="primary" header="Pricing Estimate" header-bg-variant="primary" header-text-variant="white" align="center">
             <b-row class="item">
                 <b-col>
@@ -79,7 +81,7 @@
                         EPIC Work Order Hours
                     </label>
                 </b-col>
-                <b-col class="wide">
+                <b-col class="full">
                     <CustomInput v-model="division.third.epic_work_order_hours" alias="epic_work_order_hours"></CustomInput>
                 </b-col>
             </b-row>
@@ -90,7 +92,7 @@
                         Divided by 8 hour per day
                     </label>
                 </b-col>
-                <b-col class="wide">
+                <b-col class="full">
                     <CustomInput v-model="division.third.divided_by_eight_hour_per_day" :disabled="true"></CustomInput>
                 </b-col>
             </b-row>
@@ -101,12 +103,13 @@
                         Labor in days
                     </label>
                 </b-col>
-                <b-col class="wide">
+                <b-col class="full">
                     <CustomInput v-model="laborInDays" :disabled="true"></CustomInput>
                 </b-col>
             </b-row>
         </b-card>
 
+        <!-- THIRD -->
 		<b-card border-variant="primary" align="center">
             <b-row class="item">
                 <b-col>
@@ -114,7 +117,7 @@
                         Rounded Labor Days
                     </label>
                 </b-col>
-                <b-col class="wide">
+                <b-col class="full">
                     <CustomInput v-model="division.fourth.rounded_labor_days" alias="rounded_labor_days"></CustomInput>
                 </b-col>
             </b-row>
@@ -125,7 +128,7 @@
                         Billable Hours/Day
                     </label>
                 </b-col>
-                <b-col class="wide">
+                <b-col class="full">
                     <CustomInput v-model="division.fourth.billable_hours_day" alias="billable_hours_day"></CustomInput>
                 </b-col>
             </b-row>
@@ -136,7 +139,7 @@
                         Billable Hours Total
                     </label>
                 </b-col>
-                <b-col class="wide">
+                <b-col class="full">
                     <CustomInput v-model="billableHoursTotal" :disabled="true"></CustomInput>
                 </b-col>
             </b-row>
@@ -147,7 +150,7 @@
                         Sanity Check Hrly Rate(from above)
                     </label>
                 </b-col>
-                <b-col class="wide">
+                <b-col class="full">
                     <CustomInput type="dollar" v-model="sanityCheckHourlyRate" :disabled="true"></CustomInput>
                 </b-col>
             </b-row>
@@ -158,7 +161,7 @@
                         Total Cost
                     </label>
                 </b-col>
-                <b-col class="wide">
+                <b-col class="full">
                     <CustomInput type="dollar" v-model="totalCost" :disabled="true"></CustomInput>
                 </b-col>
             </b-row>
@@ -169,8 +172,82 @@
                         Rounded not to end in zero
                     </label>
                 </b-col>
-                <b-col class="wide">
+                <b-col class="full">
                     <CustomInput type="dollar" v-model="division.fourth.rounded_not_end_zero" alias="rounded_not_end_zero"></CustomInput>
+                </b-col>
+            </b-row>
+        </b-card>
+
+        <!-- FOURTH -->
+        <b-card border-variant="dark" align="center">
+            <b-row class="item pl-2 pr-2">
+                <b-col class="border border-dark rounded-0 border custom-column-115">
+                    <label class="font-weight-bold">
+                        Labor Costs @ 40% Target
+                    </label>
+                </b-col>
+                <b-col class="text-white border border-dark bg-dark custom-column-115">
+                    <label>
+                        EPIC
+                    </label>
+                </b-col>
+                <b-col class="text-white border border-dark bg-dark rounded-0 custom-column-115">
+                    <label>
+                        Actual
+                    </label>
+                </b-col>
+                <b-col class="text-white border border-dark bg-dark rounded-0 custom-column-115">
+                    <label>
+                        Var
+                    </label>
+                </b-col>
+            </b-row>
+            <b-row class="item pl-2 pr-2" ref="billable_hours">
+                <b-col class="border border-dark custom-column-70">
+                    <label>
+                        Billable Hours
+                    </label>
+                </b-col>
+                <b-col class="full border border-dark custom-column-70">
+                    <CustomInput v-model="division.fifth.billable_hours_epic" alias="billable_hours_epic" classes="border-0 pl-0 pr-0 noBoxShadow"></CustomInput>
+                </b-col>
+                <b-col class="full border border-dark custom-column-70">
+                    <CustomInput v-model="division.fifth.billable_hours_actual" alias="billable_hours_actual" classes="border-0 pl-0 pr-0 noBoxShadow"></CustomInput>
+                </b-col>
+                <b-col class="full border border-dark bg-gray-300 custom-column-70">
+                    <CustomInput type="dollar_parenthesis" v-model="billableHoursVar" alias="billable_hours_var" classes="bg-gray-300 border-0" :disabled="true"></CustomInput>
+                </b-col>
+            </b-row>
+            <b-row class="item pl-2 pr-2">
+                <b-col class="border border-dark custom-column-90">
+                    <label>
+                        Avg Hourly Cost
+                    </label>
+                </b-col>
+                <b-col class="full border border-dark custom-column-90">
+                    <CustomInput v-model="division.fifth.average_hourly_cost_epic" alias="average_hourly_cost_epic" classes="border-0 pl-0 pr-0 noBoxShadow"></CustomInput>
+                </b-col>
+                <b-col class="full border border-dark custom-column-90">
+                    <CustomInput v-model="division.fifth.average_hourly_cost_actual" alias="average_hourly_cost_actual" classes="border-0 pl-0 pr-0 noBoxShadow"></CustomInput>
+                </b-col>
+                <b-col class="full border border-dark custom-column-90 bg-gray-300">
+                    <CustomInput type="dollar_parenthesis" v-model="averageHourlyCostVar" alias="average_hourly_cost_var" classes="bg-gray-300 border-0" :disabled="true"></CustomInput>
+                </b-col>
+            </b-row>
+            <b-row class="item pl-2 pr-2">
+                <b-col class="border border-dark custom-column-70">
+                    <label>
+                        Labor Cost
+                    </label>
+                </b-col>
+                <b-col class="full border border-dark custom-column-70">
+                    <CustomInput v-model="division.fifth.labor_cost_epic" alias="labor_cost_epic" classes="border-0 pl-0 pr-0 noBoxShadow"></CustomInput>
+                </b-col>
+                <b-col class="full border border-dark custom-column-70">
+                    <CustomInput v-model="division.fifth.labor_cost_actual" alias="labor_cost_actual" classes="border-0 pl-0 pr-0 noBoxShadow"></CustomInput>
+                </b-col>
+                <b-col class="full border border-dark custom-column-70 bg-gray-300">
+                    <CustomInput type="dollar_parenthesis" v-model="laborCostVar" alias="labor_cost_var" classes="bg-gray-300 border-0" :disabled="true"></CustomInput>
                 </b-col>
             </b-row>
         </b-card>
@@ -240,11 +317,23 @@
                         total_cost: 0,
                         rounded_not_end_zero: 0,
                         billable_hours_total: 0
+                    },
+
+                    fifth: {
+                        billable_hours_epic: 0,
+                        billable_hours_actual: 0,
+                        billable_hours_var: 0,
+                        average_hourly_cost_epic: 0,
+                        average_hourly_cost_actual: 0,
+                        average_hourly_cost_var: 0,
+                        labor_cost_epic: 0,
+                        labor_cost_actual: 0,
+                        labor_cost_var: 0
                     }
 				}
 
 				return division;
-			}
+            }
         },
 
         computed: {
@@ -270,6 +359,18 @@
 
             totalCost: function() {
                 return parseFloat(this.sanityCheckHourlyRate * this.billableHoursTotal);
+            },
+
+            billableHoursVar: function() {
+                return (parseFloat(this.division.fifth.billable_hours_actual) - parseFloat(this.division.fifth.billable_hours_epic)); 
+            },
+
+            averageHourlyCostVar: function() {
+                return (parseFloat(this.division.fifth.average_hourly_cost_actual) - parseFloat(this.division.fifth.average_hourly_cost_epic)); 
+            },
+
+            laborCostVar: function() {
+                return (parseFloat(this.division.fifth.average_hourly_cost_actual) - parseFloat(this.division.fifth.average_hourly_cost_epic)); 
             },
 
             getFirstItem() {
@@ -348,11 +449,31 @@
         padding: 2rem;
     }
 
-	.wide div {
+	.full div {
 		width: 100%;
 	}
 
 	.card {
 		margin-bottom: 1rem;
 	}
+
+    .bg-gray-300 {
+        background: #e9ecef;
+    }
+
+    .custom-column-115 {
+        min-height: 115px;
+    }
+
+    .custom-column-90 {
+        min-height: 90px;
+    }
+
+    .custom-column-75 {
+        min-height: 75px;
+    }
+
+    .custom-column-70 {
+        min-height: 70px;
+    }
 </style>
