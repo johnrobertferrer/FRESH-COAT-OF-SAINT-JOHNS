@@ -181,22 +181,22 @@
         <!-- FOURTH -->
         <b-card border-variant="dark" align="center">
             <b-row class="item pl-2 pr-2">
-                <b-col class="border border-dark rounded-0 border custom-column-115">
+                <b-col class="border border-dark rounded-0 border custom-column-140">
                     <label class="font-weight-bold">
                         Labor Costs @ 40% Target
                     </label>
                 </b-col>
-                <b-col class="text-white border border-dark bg-dark custom-column-115">
+                <b-col class="text-white border border-dark bg-dark custom-column-140">
                     <label>
                         EPIC
                     </label>
                 </b-col>
-                <b-col class="text-white border border-dark bg-dark rounded-0 custom-column-115">
+                <b-col class="text-white border border-dark bg-dark rounded-0 custom-column-140">
                     <label>
                         Actual
                     </label>
                 </b-col>
-                <b-col class="text-white border border-dark bg-dark rounded-0 custom-column-115">
+                <b-col class="text-white border border-dark bg-dark rounded-0 custom-column-140">
                     <label>
                         Var
                     </label>
@@ -209,13 +209,13 @@
                     </label>
                 </b-col>
                 <b-col class="full border border-dark custom-column-70">
-                    <CustomInput v-model="division.fifth.billable_hours_epic" alias="billable_hours_epic" classes="border-0 pl-0 pr-0 noBoxShadow"></CustomInput>
+                    <CustomInput v-model="division.fifth.billable_hours_epic" alias="billable_hours_epic" classes="border-0 pl-0 pr-0 noBoxShadow responsive-input"></CustomInput>
                 </b-col>
                 <b-col class="full border border-dark custom-column-70">
-                    <CustomInput v-model="division.fifth.billable_hours_actual" alias="billable_hours_actual" classes="border-0 pl-0 pr-0 noBoxShadow"></CustomInput>
+                    <CustomInput v-model="division.fifth.billable_hours_actual" alias="billable_hours_actual" classes="border-0 pl-0 pr-0 noBoxShadow responsive-input"></CustomInput>
                 </b-col>
                 <b-col class="full border border-dark bg-gray-300 custom-column-70">
-                    <CustomInput type="dollar_parenthesis" v-model="billableHoursVar" alias="billable_hours_var" classes="bg-gray-300 border-0" :disabled="true"></CustomInput>
+                    <CustomInput type="dollar_parenthesis" v-model="billableHoursVar" alias="billable_hours_var" classes="bg-gray-300 border-0 pl-0 pr-0 responsive-input" :disabled="true"></CustomInput>
                 </b-col>
             </b-row>
             <b-row class="item pl-2 pr-2">
@@ -225,13 +225,13 @@
                     </label>
                 </b-col>
                 <b-col class="full border border-dark custom-column-90">
-                    <CustomInput v-model="division.fifth.average_hourly_cost_epic" alias="average_hourly_cost_epic" classes="border-0 pl-0 pr-0 noBoxShadow"></CustomInput>
+                    <CustomInput v-model="division.fifth.average_hourly_cost_epic" alias="average_hourly_cost_epic" classes="border-0 pl-0 pr-0 noBoxShadow responsive-input"></CustomInput>
                 </b-col>
                 <b-col class="full border border-dark custom-column-90">
-                    <CustomInput v-model="division.fifth.average_hourly_cost_actual" alias="average_hourly_cost_actual" classes="border-0 pl-0 pr-0 noBoxShadow"></CustomInput>
+                    <CustomInput v-model="division.fifth.average_hourly_cost_actual" alias="average_hourly_cost_actual" classes="border-0 pl-0 pr-0 noBoxShadow responsive-input"></CustomInput>
                 </b-col>
                 <b-col class="full border border-dark custom-column-90 bg-gray-300">
-                    <CustomInput type="dollar_parenthesis" v-model="averageHourlyCostVar" alias="average_hourly_cost_var" classes="bg-gray-300 border-0" :disabled="true"></CustomInput>
+                    <CustomInput type="dollar_parenthesis" v-model="averageHourlyCostVar" alias="average_hourly_cost_var" classes="bg-gray-300 border-0 pl-0 pr-0 responsive-input" :disabled="true"></CustomInput>
                 </b-col>
             </b-row>
             <b-row class="item pl-2 pr-2">
@@ -241,13 +241,13 @@
                     </label>
                 </b-col>
                 <b-col class="full border border-dark custom-column-70">
-                    <CustomInput v-model="division.fifth.labor_cost_epic" alias="labor_cost_epic" classes="border-0 pl-0 pr-0 noBoxShadow"></CustomInput>
+                    <CustomInput v-model="division.fifth.labor_cost_epic" alias="labor_cost_epic" classes="border-0 pl-0 pr-0 noBoxShadow responsive-input"></CustomInput>
                 </b-col>
                 <b-col class="full border border-dark custom-column-70">
-                    <CustomInput v-model="division.fifth.labor_cost_actual" alias="labor_cost_actual" classes="border-0 pl-0 pr-0 noBoxShadow"></CustomInput>
+                    <CustomInput v-model="division.fifth.labor_cost_actual" alias="labor_cost_actual" classes="border-0 pl-0 pr-0 noBoxShadow responsive-input"></CustomInput>
                 </b-col>
                 <b-col class="full border border-dark custom-column-70 bg-gray-300">
-                    <CustomInput type="dollar_parenthesis" v-model="laborCostVar" alias="labor_cost_var" classes="bg-gray-300 border-0" :disabled="true"></CustomInput>
+                    <CustomInput type="dollar_parenthesis" v-model="laborCostVar" alias="labor_cost_var" classes="bg-gray-300 border-0 pl-0 pr-0 responsive-input" :disabled="true"></CustomInput>
                 </b-col>
             </b-row>
         </b-card>
@@ -461,8 +461,8 @@
         background: #e9ecef;
     }
 
-    .custom-column-115 {
-        min-height: 115px;
+    .custom-column-140 {
+        min-height: 140px;
     }
 
     .custom-column-90 {
@@ -476,4 +476,6 @@
     .custom-column-70 {
         min-height: 70px;
     }
+
+    
 </style>

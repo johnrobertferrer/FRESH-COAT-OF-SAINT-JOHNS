@@ -112,6 +112,12 @@ export default {
     }
 
     .bg-gray-300 {
-        background: ##e9ecef !important;
+        background: #e9ecef !important;
+    }
+
+    @media screen and (max-width: 750px) {
+        .responsive-input {
+            font-size: 75%;
+        }
     }
 </style>
