@@ -16,6 +16,7 @@
             <b-table hover :items="getFirstItem" table-variant="dark" :fields="getFirstField"></b-table>
         </b-jumbotron>
 
+        <!-- SECOND -->
         <b-card border-variant="primary" header="EPIC eBid Sanity Check" header-bg-variant="primary" header-text-variant="white" align="center">
             <b-row class="item">
                 <b-col>
@@ -73,7 +74,7 @@
             </b-row>
         </b-card>
 
-        <!-- SECOND -->
+        <!-- THIRD -->
 		<b-card border-variant="primary" header="Pricing Estimate" header-bg-variant="primary" header-text-variant="white" align="center">
             <b-row class="item">
                 <b-col>
@@ -109,7 +110,7 @@
             </b-row>
         </b-card>
 
-        <!-- THIRD -->
+        <!-- FOURTH -->
 		<b-card border-variant="primary" align="center">
             <b-row class="item">
                 <b-col>
@@ -178,7 +179,7 @@
             </b-row>
         </b-card>
 
-        <!-- FOURTH -->
+        <!-- FIFTH -->
         <b-card border-variant="dark" align="center">
             <b-row class="item pl-2 pr-2">
                 <b-col class="border border-dark rounded-0 border custom-column-140">
@@ -240,14 +241,88 @@
                         Labor Cost
                     </label>
                 </b-col>
-                <b-col class="full border border-dark custom-column-70">
-                    <CustomInput v-model="division.fifth.labor_cost_epic" alias="labor_cost_epic" classes="border-0 pl-0 pr-0 noBoxShadow responsive-input"></CustomInput>
+                <b-col class="full border border-dark custom-column-70 bg-gray-300">
+                    <CustomInput v-model="laborCostEpic" alias="labor_cost_epic" classes="bg-gray-300 border-0 pl-0 pr-0 responsive-input" :disabled="true"></CustomInput>
                 </b-col>
-                <b-col class="full border border-dark custom-column-70">
-                    <CustomInput v-model="division.fifth.labor_cost_actual" alias="labor_cost_actual" classes="border-0 pl-0 pr-0 noBoxShadow responsive-input"></CustomInput>
+                <b-col class="full border border-dark custom-column-70 bg-gray-300">
+                    <CustomInput v-model="laborCostActual" alias="labor_cost_actual" classes="bg-gray-300 border-0 pl-0 pr-0 responsive-input" :disabled="true"></CustomInput>
                 </b-col>
                 <b-col class="full border border-dark custom-column-70 bg-gray-300">
                     <CustomInput type="dollar_parenthesis" v-model="laborCostVar" alias="labor_cost_var" classes="bg-gray-300 border-0 pl-0 pr-0 responsive-input" :disabled="true"></CustomInput>
+                </b-col>
+            </b-row>
+        </b-card>
+
+        <!-- SIXTH -->
+        <b-card border-variant="dark" align="center">
+            <b-row class="item pl-2 pr-2">
+                <b-col class="border border-dark rounded-0 border custom-column-140">
+                    <label class="font-weight-bold">
+                        Material Costs @ 15% Target
+                    </label>
+                </b-col>
+                <b-col class="text-white border border-dark bg-dark custom-column-140">
+                    <label>
+                        My Estimate
+                    </label>
+                </b-col>
+                <b-col class="text-white border border-dark bg-dark rounded-0 custom-column-140">
+                    <label>
+                        Epic
+                    </label>
+                </b-col>
+                <b-col class="text-white border border-dark bg-dark rounded-0 custom-column-140">
+                    <label>
+                        Var
+                    </label>
+                </b-col>
+            </b-row>
+            <b-row class="item pl-2 pr-2" ref="billable_hours">
+                <b-col class="border border-dark custom-column-70">
+                    <label>
+                        Number Gallons
+                    </label>
+                </b-col>
+                <b-col class="full border border-dark custom-column-70">
+                    <CustomInput v-model="division.sixth.number_gallons_my_estimate" alias="number_gallons_my_estimate" classes="border-0 pl-0 pr-0 noBoxShadow responsive-input"></CustomInput>
+                </b-col>
+                <b-col class="full border border-dark custom-column-70">
+                    <CustomInput v-model="division.sixth.number_gallons_epic" alias="number_gallons_epic" classes="border-0 pl-0 pr-0 noBoxShadow responsive-input"></CustomInput>
+                </b-col>
+                <b-col class="full border border-dark bg-gray-300 custom-column-70">
+                    <CustomInput type="dollar_parenthesis" v-model="numberGallonsVar" alias="number_gallons_var" classes="bg-gray-300 border-0 pl-0 pr-0 responsive-input" :disabled="true"></CustomInput>
+                </b-col>
+            </b-row>
+            <b-row class="item pl-2 pr-2">
+                <b-col class="border border-dark custom-column-90">
+                    <label>
+                        Price p/Gallon
+                    </label>
+                </b-col>
+                <b-col class="full border border-dark custom-column-90">
+                    <CustomInput v-model="division.sixth.price_p_gallon_my_estimate" alias="price_p_gallon_my_estimate" classes="border-0 pl-0 pr-0 noBoxShadow responsive-input"></CustomInput>
+                </b-col>
+                <b-col class="full border border-dark custom-column-90">
+                    <CustomInput v-model="division.sixth.price_p_gallon_epic" alias="price_p_gallon_epic" classes="border-0 pl-0 pr-0 noBoxShadow responsive-input"></CustomInput>
+                </b-col>
+                <b-col class="full border border-dark custom-column-90 bg-gray-300">
+                    <CustomInput type="dollar_parenthesis" v-model="pricePGallonVar" alias="price_p_gallon_var" classes="bg-gray-300 border-0 pl-0 pr-0 responsive-input" :disabled="true"></CustomInput>
+                </b-col>
+            </b-row>
+            <b-row class="item pl-2 pr-2">
+                <b-col class="border border-dark custom-column-70">
+                    <label>
+                        Material Cost
+                    </label>
+                </b-col>
+                <b-col class="full border border-dark custom-column-70 bg-gray-300">
+                    <CustomInput v-model="materialCostMyEstimate" alias="material_cost_my_estimate" classes="bg-gray-300 border-0 pl-0 pr-0 responsive-input" :disabled="true"></CustomInput>
+                </b-col>
+                <b-col class="full border border-dark custom-column-70 bg-gray-300">
+                    <CustomInput v-model="materialCostEpic" alias="material_cost_epic" classes="bg-gray-300 border-0 pl-0 pr-0 responsive-input" :disabled="true"></CustomInput>
+                </b-col>
+                <b-col class="full border border-dark custom-column-70 bg-gray-300">
+                    <CustomInput type="dollar_parenthesis" v-model="materialCostVar" alias="material_cost_var" classes="bg-gray-300 border-0 pl-0 pr-0 responsive-input" :disabled="true"></CustomInput>
                 </b-col>
             </b-row>
         </b-card>
@@ -329,6 +404,18 @@
                         labor_cost_epic: 0,
                         labor_cost_actual: 0,
                         labor_cost_var: 0
+                    },
+
+                    sixth: {
+                        number_gallons_my_estimate: 0,
+                        number_gallons_epic: 0,
+                        number_gallons_var: 0,
+                        price_p_gallon_my_estimate: 0,
+                        price_p_gallon_epic: 0,
+                        price_p_gallon_var: 0,
+                        material_cost_my_estimate: 0,
+                        material_cost_epic: 0,
+                        material_cost_var: 0
                     }
 				}
 
@@ -369,8 +456,36 @@
                 return (parseFloat(this.division.fifth.average_hourly_cost_actual) - parseFloat(this.division.fifth.average_hourly_cost_epic)); 
             },
 
+            laborCostEpic: function() {
+                return (parseFloat(this.division.fifth.billable_hours_epic) * parseFloat(this.division.fifth.average_hourly_cost_epic)); 
+            },
+
+            laborCostActual: function() {
+                return (parseFloat(this.division.fifth.billable_hours_actual) * parseFloat(this.division.fifth.average_hourly_cost_actual)); 
+            },
+
             laborCostVar: function() {
-                return (parseFloat(this.division.fifth.average_hourly_cost_actual) - parseFloat(this.division.fifth.average_hourly_cost_epic)); 
+                return parseFloat(this.laborCostActual - this.laborCostEpic);
+            },
+
+            numberGallonsVar: function() {
+                return (parseFloat(this.division.sixth.number_gallons_my_estimate) - parseFloat(this.division.sixth.number_gallons_epic)); 
+            },
+
+            pricePGallonVar: function() {
+                return (parseFloat(this.division.sixth.price_p_gallon_my_estimate) - parseFloat(this.division.sixth.price_p_gallon_epic)); 
+            },
+
+            materialCostMyEstimate: function() {
+                return (parseFloat(this.division.sixth.number_gallons_my_estimate) * parseFloat(this.division.sixth.price_p_gallon_my_estimate)); 
+            },
+
+            materialCostEpic: function() {
+                return (parseFloat(this.division.sixth.number_gallons_epic) * parseFloat(this.division.sixth.price_p_gallon_epic)); 
+            },
+
+            materialCostVar: function() {
+                return parseFloat(this.materialCostMyEstimate - this.materialCostEpic);
             },
 
             getFirstItem() {

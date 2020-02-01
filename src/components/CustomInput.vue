@@ -23,10 +23,18 @@ export default {
             switch(this.alias) {
                 case 'average_hourly_rate': 
                 case 'rounded_labor_days': 
+                case 'rounded_not_end_zero': 
+                case 'billable_hours_epic': 
+                case 'average_hourly_cost_epic': 
+                case 'number_gallons_my_estimate': 
+                case 'price_p_gallon_my_estimate': 
                     interval = 1;
                     break;
                 case 'burden_percent': 
                 case 'labor_target_percent': 
+                case 'billable_hours_actual': 
+                case 'number_gallons_epic': 
+                case 'price_p_gallon_epic': 
                     interval = 2;
                     break;
                 case 'epic_work_order_hours': 
@@ -34,6 +42,9 @@ export default {
                     break;
                 case 'billable_hours_day': 
                     interval = 4;
+                    break;
+                case 'average_hourly_cost_actual': 
+                    interval = 5;
                     break;
             }
 
