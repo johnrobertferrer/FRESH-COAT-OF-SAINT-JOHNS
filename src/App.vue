@@ -10,7 +10,7 @@
         </div>
 
         <MainComponent 
-            title="Fresh Coat of NW San Antonio" 
+            title=" Fresh Coat of st johns" 
             sub-title="Project Budget Versus Actual Expense" 
             v-if="!loading"
             class="margin"
@@ -29,7 +29,7 @@
         },
 
         mounted() {
-            setTimeout(() => { this.loading = false }, 2000); 
+            setTimeout(() => { this.loading = false }, 0); 
         },
 
         data() {

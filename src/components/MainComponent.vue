@@ -13,7 +13,52 @@
 
         <!-- FIRST -->
         <b-jumbotron bg-variant="dark" text-variant="white">
-            <b-table hover :items="getFirstItem" table-variant="dark" :fields="getFirstField"></b-table>
+            <b-row class="item">
+                <b-col>
+                    <label>
+                        Job Name
+                    </label>
+                </b-col>
+                <b-col class="full">
+                    <b-form-input type="text" v-model="division.first.project_name" v-on:keyup.enter="focus($event, 'project_name')" class="rounded-0 width-p-108" placeholder="Please, input text here.."/>
+                </b-col>
+            </b-row>
+            <b-row class="item">
+                <b-col>
+                    <label>
+                        Estimate Date
+                    </label>
+                </b-col>
+                <b-col>
+                    <v-date-picker
+                        :formats='date.formats'
+                        v-model="division.first.estimated_date"
+                        :popover="{ placement: 'bottom', visibility: 'click' }">
+                        <button class="text-black focus:outline-none">
+                            <b-icon-calendar-fill></b-icon-calendar-fill>
+                        </button>
+                    </v-date-picker>
+                    <b-form-input type="text" v-model="getEstimatedDate" disabled class="rounded-0 ml-2"/>
+                </b-col>
+            </b-row>
+            <b-row class="item">
+                <b-col>
+                    <label>
+                        Project Completion Date
+                    </label>
+                </b-col>
+                <b-col>
+                    <v-date-picker
+                        :formats='date.formats'
+                        v-model="division.first.project_completion_date"
+                        :popover="{ placement: 'bottom', visibility: 'click' }">
+                        <button class="text-black focus:outline-none">
+                            <b-icon-calendar-fill></b-icon-calendar-fill>
+                        </button>
+                    </v-date-picker>
+                    <b-form-input type="text" v-model="getProjectCompletionDate" disabled class="rounded-0 ml-2"/>
+                </b-col>
+            </b-row>
         </b-jumbotron>
 
         <!-- SECOND -->
@@ -351,7 +396,17 @@
 
         data() {
             return {
-                division: {}
+                division: {},
+                date: {
+                    formats: {
+                        title: 'MMMM YYYY',
+                        weekdays: 'W',
+                        navMonths: 'MMM',
+                        input: ['L', 'YYYY-MM-DD', 'YYYY/MM/DD'], // Only for `v-date-picker`
+                        dayPopover: 'L', // Only for `v-date-picker`
+                        data: ['L', 'YYYY-MM-DD', 'YYYY/MM/DD'] // For attribute dates
+                    }
+                }
             }
         },
 
@@ -367,8 +422,9 @@
 			getInitialData() {
 				let division = {
 					first: {
-                        estimated_date: '07/02/2019',
-                        project_completion_date: '07/02/2019'
+                        project_name: '',
+                        estimated_date: new Date(),
+                        project_completion_date: new Date()
                     },
 
                     second: {
@@ -420,6 +476,24 @@
 				}
 
 				return division;
+            },
+
+            focus(event, alias) {
+                let interval = 0;
+
+                switch(alias) {
+                    case 'project_name': 
+                        interval = 6;
+                        break;
+                }
+
+                let prependKey = '__BVID__';
+                let splittedId = event.target.id.split(prependKey);
+                let id = prependKey + (parseInt(splittedId[1]) + (interval * 2));
+
+                if(interval !== 0 && id) {
+                    document.getElementById(id).focus();
+                }
             }
         },
 
@@ -488,28 +562,12 @@
                 return parseFloat(this.materialCostMyEstimate - this.materialCostEpic);
             },
 
-            getFirstItem() {
-                let items = [{
-                    jobName: 'Estimate Date',
-                    mobleyTraining: '07/02/2019'
-                }, {
-                    jobName: 'Project Completion Date',
-                    mobleyTraining: '07/02/2019'
-                }];
-
-                return items;
+            getEstimatedDate: function() {
+                return Moment(this.division.first.estimated_date).format('MM/DD/YYYY');  // eslint-disable-line
             },
 
-            getFirstField() {
-                let fields = [{
-                    key: 'jobName',
-                    label: 'Job Name'
-                }, {
-                    key: 'mobleyTraining',
-                    label: 'Mobley #2/Training'
-                }];
-
-                return fields
+            getProjectCompletionDate: function() {
+                return Moment(this.division.first.project_completion_date).format('MM/DD/YYYY');  // eslint-disable-line
             }
         }
     }
@@ -592,5 +650,7 @@
         min-height: 70px;
     }
 
-    
+    .width-p-108 {
+        width: 108%;
+    }
 </style>
