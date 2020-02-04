@@ -29,7 +29,7 @@
         },
 
         mounted() {
-            setTimeout(() => { this.loading = false }, 0); 
+            setTimeout(() => { this.loading = false }, 1750); 
         },
 
         data() {
