@@ -34,17 +34,21 @@ export default {
                 case 'labor_target_percent': 
                 case 'billable_hours_actual': 
                 case 'number_gallons_epic': 
-                case 'price_p_gallon_epic': 
+                case 'revenue_actual': 
                     interval = 2;
                     break;
                 case 'epic_work_order_hours': 
                     interval = 3;
                     break;
                 case 'billable_hours_day': 
+                case 'labor_burden_target_percent': 
                     interval = 4;
                     break;
                 case 'average_hourly_cost_actual': 
                     interval = 5;
+                    break;
+                case 'price_p_gallon_epic': 
+                    interval = 6;
                     break;
             }
 
