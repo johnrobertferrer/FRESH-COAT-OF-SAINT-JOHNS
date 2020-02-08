@@ -95,7 +95,7 @@
                     </label>
                 </b-col>
                 <b-col class="full">
-                    <CustomInput type="percent" v-model="division.second.burden_percent" alias="burden_percent"></CustomInput>
+                    <CustomInput type="percent" v-model="division.second.burden_percent" precision="0" alias="burden_percent"></CustomInput>
                 </b-col>
             </b-row>
 
