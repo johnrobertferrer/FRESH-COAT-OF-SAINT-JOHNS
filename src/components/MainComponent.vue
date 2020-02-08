@@ -164,7 +164,7 @@
                     </label>
                 </b-col>
                 <b-col class="full">
-                    <CustomInput v-model="laborInDays" :disabled="true"></CustomInput>
+                    <CustomInput v-model="laborInDays" :disabled="true" precision="1"></CustomInput>
                 </b-col>
             </b-row>
         </b-card>
@@ -275,7 +275,7 @@
                     <CustomInput v-model="division.fifth.billable_hours_actual" alias="billable_hours_actual" classes="border-0 pl-0 pr-0 noBoxShadow responsive-input"></CustomInput>
                 </b-col>
                 <b-col class="full border border-dark bg-gray-300 custom-column-70">
-                    <CustomInput type="dollar_parenthesis" v-model="billableHoursVar" alias="billable_hours_var" classes="bg-gray-300 border-0 pl-0 pr-0 responsive-input" :disabled="true"></CustomInput>
+                    <CustomInput type="dollar" v-model="billableHoursVar" alias="billable_hours_var" classes="bg-gray-300 border-0 pl-0 pr-0 responsive-input" :disabled="true"></CustomInput>
                 </b-col>
             </b-row>
             <b-row class="item pl-2 pr-2">
@@ -291,7 +291,7 @@
                     <CustomInput type="dollar" v-model="division.fifth.average_hourly_cost_actual" alias="average_hourly_cost_actual" classes="border-0 pl-0 pr-0 noBoxShadow responsive-input"></CustomInput>
                 </b-col>
                 <b-col class="full border border-dark custom-column-90 bg-gray-300">
-                    <CustomInput type="dollar_parenthesis" v-model="averageHourlyCostVar" alias="average_hourly_cost_var" classes="bg-gray-300 border-0 pl-0 pr-0 responsive-input" :disabled="true"></CustomInput>
+                    <CustomInput type="dollar" v-model="averageHourlyCostVar" alias="average_hourly_cost_var" classes="bg-gray-300 border-0 pl-0 pr-0 responsive-input" :disabled="true"></CustomInput>
                 </b-col>
             </b-row>
             <b-row class="item pl-2 pr-2">
@@ -307,7 +307,7 @@
                     <CustomInput type="dollar" v-model="laborCostActual" alias="labor_cost_actual" classes="bg-gray-300 border-0 pl-0 pr-0 responsive-input" :disabled="true"></CustomInput>
                 </b-col>
                 <b-col class="full border border-dark custom-column-70 bg-gray-300">
-                    <CustomInput type="dollar_parenthesis" v-model="laborCostVar" alias="labor_cost_var" classes="bg-gray-300 border-0 pl-0 pr-0 responsive-input" :disabled="true"></CustomInput>
+                    <CustomInput type="dollar" v-model="laborCostVar" alias="labor_cost_var" classes="bg-gray-300 border-0 pl-0 pr-0 responsive-input" :disabled="true"></CustomInput>
                 </b-col>
             </b-row>
         </b-card>
@@ -349,7 +349,7 @@
                     <CustomInput v-model="division.sixth.number_gallons_epic" alias="number_gallons_epic" classes="border-0 pl-0 pr-0 noBoxShadow responsive-input"></CustomInput>
                 </b-col>
                 <b-col class="full border border-dark bg-gray-300 custom-column-70">
-                    <CustomInput type="dollar_parenthesis" v-model="numberGallonsVar" alias="number_gallons_var" classes="bg-gray-300 border-0 pl-0 pr-0 responsive-input" :disabled="true"></CustomInput>
+                    <CustomInput type="dollar" v-model="numberGallonsVar" alias="number_gallons_var" classes="bg-gray-300 border-0 pl-0 pr-0 responsive-input" :disabled="true"></CustomInput>
                 </b-col>
             </b-row>
             <b-row class="item pl-2 pr-2">
@@ -365,7 +365,7 @@
                     <CustomInput type="dollar" v-model="division.sixth.price_p_gallon_epic" alias="price_p_gallon_epic" classes="border-0 pl-0 pr-0 noBoxShadow responsive-input"></CustomInput>
                 </b-col>
                 <b-col class="full border border-dark custom-column-90 bg-gray-300">
-                    <CustomInput type="dollar_parenthesis" v-model="pricePGallonVar" alias="price_p_gallon_var" classes="bg-gray-300 border-0 pl-0 pr-0 responsive-input" :disabled="true"></CustomInput>
+                    <CustomInput type="dollar" v-model="pricePGallonVar" alias="price_p_gallon_var" classes="bg-gray-300 border-0 pl-0 pr-0 responsive-input" :disabled="true"></CustomInput>
                 </b-col>
             </b-row>
             <b-row class="item pl-2 pr-2">
@@ -381,7 +381,7 @@
                     <CustomInput type="dollar" v-model="materialCostEpic" alias="material_cost_epic" classes="bg-gray-300 border-0 pl-0 pr-0 responsive-input" :disabled="true"></CustomInput>
                 </b-col>
                 <b-col class="full border border-dark custom-column-70 bg-gray-300">
-                    <CustomInput type="dollar_parenthesis" v-model="materialCostVar" alias="material_cost_var" classes="bg-gray-300 border-0 pl-0 pr-0 responsive-input" :disabled="true"></CustomInput>
+                    <CustomInput type="dollar" v-model="materialCostVar" alias="material_cost_var" classes="bg-gray-300 border-0 pl-0 pr-0 responsive-input" :disabled="true"></CustomInput>
                 </b-col>
             </b-row>
         </b-card>
@@ -440,13 +440,13 @@
                     <CustomInput type="dollar" v-model="laborBurdenBudget" alias="labor_burden_budget" classes="border-0 pl-0 pr-0 noBoxShadow responsive-input" :disabled="true"></CustomInput>
                 </b-col>
                 <b-col class="full border border-dark custom-column-70">
-                    <CustomInput type="percent" v-model="division.seventh.labor_burden_target_percent" alias="labor_burden_target_percent" classes="border-0 pl-0 pr-0 noBoxShadow responsive-input"></CustomInput>
+                    <CustomInput type="percent" v-model="division.seventh.labor_burden_target_percent" precision="0" alias="labor_burden_target_percent" classes="border-0 pl-0 pr-0 noBoxShadow responsive-input"></CustomInput>
                 </b-col>
                 <b-col class="full border border-dark custom-column-70 bg-gray-300">
                     <CustomInput type="dollar" v-model="laborBurdenActual" alias="labor_burden_actual" classes="border-0 pl-0 pr-0 noBoxShadow responsive-input" :disabled="true"></CustomInput>
                 </b-col>
                 <b-col class="full border border-dark custom-column-70 bg-gray-300">
-                    <CustomInput type="percent" v-model="laborBurdenActualPercent" alias="labor_burden_actual_percent" classes="border-0 pl-0 pr-0 noBoxShadow responsive-input" :disabled="true"></CustomInput>
+                    <CustomInput type="percent" v-model="laborBurdenActualPercent" alias="labor_burden_actual_percent" precision="1" classes="border-0 pl-0 pr-0 noBoxShadow responsive-input" :disabled="true"></CustomInput>
                 </b-col>
             </b-row>
             <b-row class="item pl-2 pr-2">
@@ -459,13 +459,13 @@
                     <CustomInput type="dollar" v-model="materialsBudget" alias="materials_budget" classes="border-0 pl-0 pr-0 noBoxShadow responsive-input" :disabled="true"></CustomInput>
                 </b-col>
                 <b-col class="full border border-dark custom-column-70">
-                    <CustomInput type="percent" v-model="division.seventh.materials_target_percent" alias="materials_target_percent" classes="border-0 pl-0 pr-0 noBoxShadow responsive-input"></CustomInput>
+                    <CustomInput type="percent" v-model="division.seventh.materials_target_percent" precision="0" alias="materials_target_percent" classes="border-0 pl-0 pr-0 noBoxShadow responsive-input"></CustomInput>
                 </b-col>
                 <b-col class="full border border-dark custom-column-70 bg-gray-300">
                     <CustomInput type="dollar" v-model="materialsActual" alias="materials_actual" classes="border-0 pl-0 pr-0 noBoxShadow responsive-input" :disabled="true"></CustomInput>
                 </b-col>
                 <b-col class="full border border-dark custom-column-70 bg-gray-300">
-                    <CustomInput type="percent" v-model="materialsActualPercent" alias="materials_actual_percent" classes="border-0 pl-0 pr-0 noBoxShadow responsive-input" :disabled="true"></CustomInput>
+                    <CustomInput type="percent" v-model="materialsActualPercent" alias="materials_actual_percent" precision="1" classes="border-0 pl-0 pr-0 noBoxShadow responsive-input" :disabled="true"></CustomInput>
                 </b-col>
             </b-row>
             <b-row class="item pl-2 pr-2">
@@ -478,13 +478,13 @@
                     <CustomInput type="dollar" v-model="grossProfitBudget" alias="gross_profit_budget" classes="border-0 pl-0 pr-0 noBoxShadow responsive-input" :disabled="true"></CustomInput>
                 </b-col>
                 <b-col class="full border border-dark custom-column-70 bg-gray-300">
-                    <CustomInput type="percent" v-model="grossProfitTargetPercent" alias="gross_profit_target_percent" classes="border-0 pl-0 pr-0 noBoxShadow responsive-input" :disabled="true"></CustomInput>
+                    <CustomInput type="percent" v-model="grossProfitTargetPercent" precision="0" alias="gross_profit_target_percent" classes="border-0 pl-0 pr-0 noBoxShadow responsive-input" :disabled="true"></CustomInput>
                 </b-col>
                 <b-col class="full border border-dark custom-column-70 bg-gray-300">
                     <CustomInput type="dollar" v-model="grossProfitActual" alias="gross_profit_actual" classes="border-0 pl-0 pr-0 noBoxShadow responsive-input" :disabled="true"></CustomInput>
                 </b-col>
                 <b-col class="full border border-dark custom-column-70 bg-gray-300">
-                    <CustomInput type="percent" v-model="grossProfitActualPercent" alias="gross_profit_actual_percent" classes="border-0 pl-0 pr-0 noBoxShadow responsive-input" :disabled="true"></CustomInput>
+                    <CustomInput type="percent" v-model="grossProfitActualPercent" alias="gross_profit_actual_percent" precision="1" classes="border-0 pl-0 pr-0 noBoxShadow responsive-input" :disabled="true"></CustomInput>
                 </b-col>
             </b-row>
             <b-row class="item pl-2 pr-2">
@@ -492,11 +492,11 @@
                 </b-col>
                 <b-col class="full border-top border-right border-dark custom-column-70"></b-col>
                 <b-col class="full border border-dark custom-column-70 bg-gray-300">
-                    <CustomInput type="percent" v-model="totalTargetPercent" alias="total_target_percent" classes="border-0 pl-0 pr-0 noBoxShadow responsive-input" :disabled="true"></CustomInput>
+                    <CustomInput type="percent" v-model="totalTargetPercent" alias="total_target_percent" precision="0" classes="border-0 pl-0 pr-0 noBoxShadow responsive-input" :disabled="true"></CustomInput>
                 </b-col>
                 <b-col class="full border-top border-left border-right border-dark custom-column-70"></b-col>
                 <b-col class="full border border-dark custom-column-70 bg-gray-300">
-                    <CustomInput type="percent" v-model="totalActualPercent" alias="total_actual_percent" classes="border-0 pl-0 pr-0 noBoxShadow responsive-input" :disabled="true"></CustomInput>
+                    <CustomInput type="percent" v-model="totalActualPercent" alias="total_actual_percent" precision="1" classes="border-0 pl-0 pr-0 noBoxShadow responsive-input" :disabled="true"></CustomInput>
                 </b-col>
             </b-row>
         </b-card>

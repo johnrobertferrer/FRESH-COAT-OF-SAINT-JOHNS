@@ -8,7 +8,7 @@
 export default {
     name: 'CustomInput',
 
-    props: ["value", "disabled", "alias", "type", "classes"],
+    props: ["value", "disabled", "alias", "type", "classes", "precision"],
 
     data() {
         return {
@@ -73,24 +73,43 @@ export default {
                     return value.toString();
                 } else {
                     if(!isFinite(value)) {
-                        value = 0; // eslint-disable-line
+                        switch(this.type) {
+                            case 'dollar':
+                                format = "$ -";
+                                break;
+                            case 'percent': 
+                                format = '0%';
+                                break;
+                            default:
+                                value = '0';
+                            break; 
+                        }
+
+                        return format;
                     } 
 
-                    let format = value.toFixed(2).replace(/(\d)(?=(\d{3})+(?:\.\d+)?$)/g, "$1,");
+                    let precision = this.precision === undefined ? 2 : this.precision;
+                    let format = value.toFixed(precision).replace(/(\d)(?=(\d{3})+(?:\.\d+)?$)/g, "$1,");
 
                     switch(this.type) {
                         case 'dollar':
-                            format = "$ " + value.toFixed(2).replace(/(\d)(?=(\d{3})+(?:\.\d+)?$)/g, "$1,");
+                            if (format < 0) {
+                                format = "$ (" + (value*-1).toFixed(precision).replace(/(\d)(?=(\d{3})+(?:\.\d+)?$)/g, "$1,") + ") ";
+                            } else if (format == 0) {
+                                format = "$    -";
+                            } else {
+                                format = "$ " + value.toFixed(precision).replace(/(\d)(?=(\d{3})+(?:\.\d+)?$)/g, "$1,");
+                            }
                             break;
                         case 'percent': 
-                            format = value.toFixed(2) + '%';
+                            format = value.toFixed(precision) + '%';
                             break;
-                        case 'dollar_parenthesis':
+                        // case 'dollar_parenthesis':
                             // format = value < 0
-                            //             ? "- $ (" + (value*-1).toFixed(2).replace(/(\d)(?=(\d{3})+(?:\.\d+)?$)/g, "$1,") + ')'
-                            //             : "$ (" + value.toFixed(2).replace(/(\d)(?=(\d{3})+(?:\.\d+)?$)/g, "$1,") + ')';
-                            format = "$ (" + value.toFixed(2).replace(/(\d)(?=(\d{3})+(?:\.\d+)?$)/g, "$1,") + ')';
-                            break;
+                            //             ? "- $ (" + (value*-1).toFixed(precision).replace(/(\d)(?=(\d{3})+(?:\.\d+)?$)/g, "$1,") + ')'
+                            //             : "$ (" + value.toFixed(precision).replace(/(\d)(?=(\d{3})+(?:\.\d+)?$)/g, "$1,") + ')';
+                            // format = "$ (" + value.toFixed(precision).replace(/(\d)(?=(\d{3})+(?:\.\d+)?$)/g, "$1,") + ')';
+                            // break;
                     }
                     // User is not modifying now. Format display value for user interface
                     return format;
