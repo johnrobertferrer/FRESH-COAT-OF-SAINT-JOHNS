@@ -1,6 +1,6 @@
 <template>
     <div id="app">
-        <div class="center" v-if="loading">
+        <!-- <div class="center" v-if="loading">
             <b-spinner 
                 style="width: 15vw; height: 15vw;" 
                 label="Loading..."
@@ -14,18 +14,29 @@
             sub-title="Project Budget Versus Actual Expense" 
             v-if="!loading"
             class="margin"
-        />
+        /> -->
+
+        <!-- server down -->
+        <div class="div">
+            <b-jumbotron bg-variant="secondary" style="margin-top: 35vh" text-variant="white">
+                <b-row>
+                    <b-col>
+                        <h1>Oops! Server down..</h1>
+                    </b-col>
+                </b-row>
+            </b-jumbotron>
+        </div>
     </div>
 </template>
 
 <script>
-    import MainComponent from './components/MainComponent.vue'
+    // import MainComponent from './components/MainComponent.vue'
 
     export default {
         name: 'app',
 
         components: {
-            MainComponent
+            // MainComponent
         },
 
         mounted() {
