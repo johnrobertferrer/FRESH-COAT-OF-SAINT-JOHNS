@@ -34,7 +34,7 @@
                     </label>
                 </b-col>
                 <b-col class="full">
-                    <b-form-input type="text" v-model="division.first.project_name" v-on:keyup.enter="focusNextField()" class="rounded-0 width-p-108" placeholder="Please, input text here.."/>
+                    <b-form-input type="text" v-model="division.first.project_name" v-on:keyup.enter="focusNextField()" class="rounded-0 width-p-100" placeholder="Please, input text here.."/>
                 </b-col>
             </b-row>
             <b-row class="item mb-1">
@@ -52,7 +52,7 @@
                             <b-icon-calendar-fill></b-icon-calendar-fill>
                         </button>
                     </v-date-picker>
-                    <b-form-input type="text" v-model="getEstimatedDate" disabled class="rounded-0 ml-2"/>
+                    <b-form-input type="text" v-model="getEstimatedDate" disabled class="rounded-0 ml-2 width-p-90"/>
                 </b-col>
             </b-row>
             <b-row class="item">
@@ -70,7 +70,7 @@
                             <b-icon-calendar-fill></b-icon-calendar-fill>
                         </button>
                     </v-date-picker>
-                    <b-form-input type="text" v-model="getProjectCompletionDate" disabled class="rounded-0 ml-2"/>
+                    <b-form-input type="text" v-model="getProjectCompletionDate" disabled class="rounded-0 ml-2 width-p-90"/>
                 </b-col>
             </b-row>
         </b-jumbotron>
@@ -827,6 +827,14 @@
 
     .width-p-108 {
         width: 108%;
+    }
+
+    .width-p-100 {
+        width: 100%;
+    }
+
+    .width-p-90 {
+        width: 90%;
     }
 
     @media screen and (max-width: 1220px) {
